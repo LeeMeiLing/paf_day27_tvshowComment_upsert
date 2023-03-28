@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tvshow Review</title>
+</head>
+<body>
+    <h3>Please leave a review</h3>
+    <p>TV Show: <span data-th-text="${tvshow.name}"></span></p>
+    <p>Language: <span data-th-text="${tvshow.language}"></span></p>
+    <p>Status: <span data-th-text="${tvshow.status}"></span></p>
+    <p data-th-unless="${#lists.isEmpty(tvshow.comments)}">Comments: <span data-th-text="${tvshow.comments}"></span></p>
+    <br>
+    <form data-th-action="@{/review/submitreview/{id}(id=${tvshow.id})}" method="post" data-th-object="${comment}">
+        Your Name: <input type="text" data-th-field="*{name}">
+        <br><br>
+        Rating: <input type="number" data-th-field="*{rating}" step="0.5">
+        <br><br>
+        Comment: <input type="text" data-th-field="${comment.comment}">
+        <br><br>
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+    </form>
+</body>
+</html>
